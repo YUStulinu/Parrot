@@ -1,0 +1,23 @@
+{
+ "sentences": 20,
+ "wer": 0.02403846153846154,
+ "synthesis_real_time_factor": 0.04146768187766076,
+ "misheard": [
+  {
+   "said": "The weather was terrible, so we stayed at home and watched a film.",
+   "heard": "The weather war is terrible, so we stayed at home and watched a film."
+  },
+  {
+   "said": "I bought a new bicycle last month and I ride it to work every day.",
+   "heard": "I bought a new bicycle this month and I ride it to work every day."
+  },
+  {
+   "said": "If you could live anywhere in the world, where would you go?",
+   "heard": "If you could lime anywhere in the world, where would you go?"
+  },
+  {
+   "said": "I usually drink a cup of coffee before I start working.",
+   "heard": "I usually drink a cup of Corfi before I start working."
+  }
+ ]
+}

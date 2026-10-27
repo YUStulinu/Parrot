@@ -1,0 +1,121 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+env:
+  FLUTTER_VERSION: 3.47.8
+
+jobs:
+  native:
+    # The engine (alignment, voice activity, the voice, the tutor's checks) and its tests; on Windows
+    # also the desktop app, which bundles it.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/cache@v4
+        with:
+          path: native/third_party/downloads
+          key: deps-${{ runner.os }}-${{ hashFiles('scripts/fetch-deps.sh') }}
+      - name: Dependencies and models
+        run: |
+          set -o pipefail
+          bash scripts/fetch-deps.sh --ci 2>&1 | tee deps.log || { echo "::error::$(tail -8 deps.log | tr '\n' ' ')"; exit 1; }
+      - name: Build (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update && sudo apt-get install -y ninja-build
+          cmake -S native -B native/build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build native/build
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          cmake -S native -B native/build -G "Visual Studio 17 2022" -A x64
+          cmake --build native/build --config Release
+      - name: Tests
+        run: ctest --test-dir native/build -C Release --output-on-failure
+      - uses: subosito/flutter-action@v2
+        if: runner.os == 'Windows'
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+      - name: The desktop app
+        if: runner.os == 'Windows'
+        working-directory: app
+        run: flutter build windows --release
+
+  ml:
+    # Alignment features through the C library, the scorer and its ONNX export, the evaluation's measures.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - uses: actions/cache@v4
+        with:
+          path: native/third_party/downloads
+          key: deps-${{ runner.os }}-${{ hashFiles('scripts/fetch-deps.sh') }}
+      - name: The alignment library
+        run: |
+          bash scripts/fetch-deps.sh --ci
+          cmake -S native -B native/build-core -DCMAKE_BUILD_TYPE=Release -DPARROT_ENGINE=OFF -DPARROT_TESTS=OFF
+          cmake --build native/build-core
+      - name: Python packages (PyTorch for the CPU)
+        run: pip install -r ml/requirements.txt --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+      - name: Tests
+        working-directory: ml
+        run: python -m pytest -q
+
+  app:
+    # The Flutter app's analysis and tests (FSRS, the card store in SQLite, the engine's JSON).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+      - working-directory: app
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
+
+  android:
+    # The Android app: the engine built by CMake for arm64 and x86_64, onnxruntime from its archive.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+      - uses: actions/cache@v4
+        with:
+          path: native/third_party/downloads
+          key: deps-${{ runner.os }}-${{ hashFiles('scripts/fetch-deps.sh') }}
+      - name: NDK, CMake and dependencies
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;29.0.14206865" "cmake;3.31.6" > /dev/null
+          bash scripts/fetch-deps.sh --ci
+      - name: Build the app
+        working-directory: app
+        run: flutter build apk --debug --target-platform android-arm64,android-x64
+      - uses: actions/upload-artifact@v4
+        with:
+          name: parrot-debug-apk
+          path: app/build/app/outputs/flutter-apk/app-debug.apk
+
+# The evaluations (speech recognition, the voice, the tutor with its language model, the scorer on
+# speechocean762) and the emulator run locally: they need the models and the data.

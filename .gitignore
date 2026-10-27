@@ -1,0 +1,25 @@
+# Downloaded (scripts/fetch-deps.sh) and built
+native/third_party/
+native/build*/
+native/*.log
+app/build/
+app/.dart_tool/
+app/android/.gradle/
+app/android/local.properties
+app/android/app/.cxx/
+app/windows/flutter/ephemeral/
+app/android/app/src/main/java/io/flutter/plugins/
+*.iml
+.idea/
+
+# Python
+ml/.venv/
+ml/data/
+ml/work/
+__pycache__/
+.pytest_cache/
+
+# Models
+*.gguf
+*.onnx
+*.bin

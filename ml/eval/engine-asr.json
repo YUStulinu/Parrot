@@ -1,0 +1,12 @@
+{
+ "utterances": 500,
+ "audio_hours": 0.5376763888888889,
+ "ggml-base.en-q5_1.bin": {
+  "wer": 0.30050031269543465,
+  "real_time_factor": 0.03435178222530909
+ },
+ "ggml-small.en-q5_1.bin": {
+  "wer": 0.24046278924327705,
+  "real_time_factor": 0.050517861243692355
+ }
+}

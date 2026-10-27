@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "fetch dependencies and models", "type": "shell", "command": "bash scripts/fetch-deps.sh", "problemMatcher": [] },
+    { "label": "build engine", "type": "shell", "command": "cmake -S native -B native/build -DPARROT_ENGINE=ON && cmake --build native/build --config Release", "group": "build", "problemMatcher": ["$msCompile"] },
+    { "label": "native tests", "type": "shell", "command": "native/build/Release/native_tests && native/build/Release/engine_tests", "group": "test", "problemMatcher": [] },
+    { "label": "Python tests", "type": "shell", "command": "ml/.venv/Scripts/python -m pytest -q tests", "options": { "cwd": "${workspaceFolder}/ml" }, "group": "test", "problemMatcher": [] },
+    { "label": "Flutter tests", "type": "shell", "command": "flutter test", "options": { "cwd": "${workspaceFolder}/app" }, "group": "test", "problemMatcher": [] },
+    { "label": "run app (Windows)", "type": "shell", "command": "flutter run -d windows", "options": { "cwd": "${workspaceFolder}/app" }, "problemMatcher": [] }
+  ]
+}

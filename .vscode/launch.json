@@ -1,0 +1,6 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    { "name": "Parrot (Flutter)", "type": "dart", "request": "launch", "cwd": "app", "program": "lib/main.dart" }
+  ]
+}

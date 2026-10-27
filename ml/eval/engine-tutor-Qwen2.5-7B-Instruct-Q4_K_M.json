@@ -1,0 +1,591 @@
+{
+ "mistakes": 42,
+ "recall": 0.6190476190476191,
+ "precision": 0.8285714285714286,
+ "right_fix": 0.9310344827586207,
+ "correct_sentences": 20,
+ "false_alarm_rate": 0.15,
+ "levels": {
+  "A2": {
+   "words_per_sentence": 4.233333333333333,
+   "fk_grade": 1.4548917748917758,
+   "example": "Hello! What do you like about travel?"
+  },
+  "B1": {
+   "words_per_sentence": 5.483333333333333,
+   "fk_grade": 3.2537672590567324,
+   "example": "Hello, how are you? What's your favorite place to travel to?"
+  },
+  "B2": {
+   "words_per_sentence": 5.816666666666666,
+   "fk_grade": 4.052728510378512,
+   "example": "Hi there! How about we talk about your favorite travel destination? Where would you go if you had a week off?"
+  },
+  "C1": {
+   "words_per_sentence": 7.025,
+   "fk_grade": 4.732430487829714,
+   "example": "Hello! I hope you're having a great day. Have you ever traveled to a place that was completely different from where you live, and if so, what was it like?"
+  }
+ },
+ "latency_ms": {
+  "median": 6384.20425,
+  "p90": 8362.954420000002
+ },
+ "model": "Qwen2.5-7B-Instruct-Q4_K_M.gguf",
+ "details": [
+  {
+   "said": "Yesterday I goed to the cinema with my friends.",
+   "corrections": [
+    {
+     "corrected": "Yesterday I went to the",
+     "explanation": "The verb 'go' should be 'went' for past tense.",
+     "kind": "grammar",
+     "original": "Yesterday I goed to the"
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "She don't like coffee in the morning.",
+   "corrections": [
+    {
+     "corrected": "She doesn't like coffee",
+     "explanation": "We use 'does not' or 'doesn't' for negative sentences with 'she'.",
+     "kind": "word_choice",
+     "original": "She don't like coffee"
+    }
+   ],
+   "dropped": [
+    "\"She don't like coffee in the morning.\": the correction changes only case or punctuation",
+    "\"She don't like coffee in the morning.\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I am living here since three years.",
+   "corrections": [
+    {
+     "corrected": "I have been living here",
+     "explanation": "We use 'have been' for actions that started in the past and continue to the present.",
+     "kind": "grammar",
+     "original": "I am living here"
+    }
+   ],
+   "dropped": [
+    "\"I have been living here since three years.\": not what the learner said"
+   ]
+  },
+  {
+   "said": "He is more taller than his brother.",
+   "corrections": [
+    {
+     "corrected": "is more tall than his",
+     "explanation": "We don't use 'taller' when comparing one person to another.",
+     "kind": "word_choice",
+     "original": "is more taller than his"
+    },
+    {
+     "corrected": "He is taller than",
+     "explanation": "We can say 'more tall' but 'taller' is simpler and more common.",
+     "kind": "word_choice",
+     "original": "He is more taller than"
+    }
+   ],
+   "dropped": [
+    "\"He is more taller than his brother.\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I have seen him yesterday at the station.",
+   "corrections": [],
+   "dropped": [
+    "\"I have seen him yesterday at the station.\": the correction changes only case or punctuation",
+    "\"I have seen him yesterday at the station.\": the correction changes only case or punctuation",
+    "\"I have seen him yesterday at the station.\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "We discussed about the problem for an hour.",
+   "corrections": [
+    {
+     "corrected": "discussed the problem",
+     "explanation": "We use 'the' when we talk about a specific problem",
+     "kind": "word_choice",
+     "original": "discussed about the problem"
+    }
+   ],
+   "dropped": [
+    "\"We discussed about the problem\": the correction changes only case or punctuation",
+    "\"discussed the problem for an hour\": not what the learner said"
+   ]
+  },
+  {
+   "said": "My sister is married with a doctor.",
+   "corrections": [
+    {
+     "corrected": "is married to a doctor.",
+     "explanation": "We use 'to' when talking about being married to someone.",
+     "kind": "word_choice",
+     "original": "is married with a doctor."
+    }
+   ],
+   "dropped": [
+    "\"My sister is married with a doctor.\": the correction changes only case or punctuation",
+    "\"My sister is married with a doctor.\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I didn't went to work because I was sick.",
+   "corrections": [
+    {
+     "corrected": "I didn't go to work",
+     "explanation": "Use 'go' instead of 'went'.",
+     "kind": "word_choice",
+     "original": "I didn't went to work"
+    }
+   ],
+   "dropped": [
+    "\"I didn't go to work because I was sick.\": not what the learner said"
+   ]
+  },
+  {
+   "said": "Can you explain me how this works?",
+   "corrections": [],
+   "dropped": [
+    "\"Can you explain me\": the correction changes only case or punctuation",
+    "\"explain me\": the correction changes only case or punctuation",
+    "\"explain me\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "There is many people in the park today.",
+   "corrections": [
+    {
+     "corrected": "There are many people",
+     "explanation": "We use 'are' with plural nouns like 'people'.",
+     "kind": "word_choice",
+     "original": "There is many people"
+    }
+   ],
+   "dropped": [
+    "\"There are many people in the park today.\": not what the learner said",
+    "\"There are many people in the park today.\": not what the learner said"
+   ]
+  },
+  {
+   "said": "I want that you come to my party.",
+   "corrections": [
+    {
+     "corrected": "I want you to come to",
+     "explanation": "Use 'you to' when giving a suggestion or command.",
+     "kind": "word_choice",
+     "original": "I want that you come to"
+    }
+   ],
+   "dropped": [
+    "\"I want you to come to my party.\": not what the learner said",
+    "\"I want you to come to my party.\": not what the learner said"
+   ]
+  },
+  {
+   "said": "She has twenty years and she studies medicine.",
+   "corrections": [],
+   "dropped": [
+    "\"She has twenty years\": the correction changes only case or punctuation",
+    "\"she studies medicine\": the correction changes only case or punctuation",
+    "\"studies medicine\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I am agree with you about the film.",
+   "corrections": [
+    {
+     "corrected": "with you",
+     "explanation": "Use 'I agree with you'",
+     "kind": "word_choice",
+     "original": "agree with you"
+    }
+   ],
+   "dropped": [
+    "\"I am agree\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "He gave me a good advice about my career.",
+   "corrections": [
+    {
+     "corrected": "good advice",
+     "explanation": "It should be 'good advice' because 'advice' is an uncountable noun and doesn't use an article.",
+     "kind": "word_choice",
+     "original": "a good advice"
+    },
+    {
+     "corrected": "He gave me",
+     "explanation": "It should be 'He gave me' to start the sentence correctly.",
+     "kind": "word_choice",
+     "original": "He gave me a"
+    }
+   ],
+   "dropped": [
+    "\"about my carreer\": not what the learner said"
+   ]
+  },
+  {
+   "said": "I made a photo of the mountains.",
+   "corrections": [],
+   "dropped": [
+    "\"\": not what the learner said"
+   ]
+  },
+  {
+   "said": "If I will have time, I will call you.",
+   "corrections": [],
+   "dropped": [
+    "\"If I will have time, I will call you.\": the correction changes only case or punctuation",
+    "\"If I will have time, I will call you.\": the correction changes only case or punctuation",
+    "\"If I will have time, I will call you.\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "My friend is very boring today, he has nothing to do.",
+   "corrections": [],
+   "dropped": [
+    "\"My friend is very boring today, he has nothing to do.\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I look forward to see you next week.",
+   "corrections": [
+    {
+     "corrected": "forward to seeing you next",
+     "explanation": "We use 'to see' as 'to see' in this context.",
+     "kind": "word_choice",
+     "original": "forward to see you next"
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "The informations on the website were wrong.",
+   "corrections": [
+    {
+     "corrected": "The information on the website was wrong.",
+     "explanation": "We use 'information' as a singular noun.",
+     "kind": "word_choice",
+     "original": "The informations"
+    }
+   ],
+   "dropped": [
+    "\"on the website\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "She can sings very well.",
+   "corrections": [
+    {
+     "corrected": "She can sing",
+     "explanation": "The verb 'sing' doesn't need an 's' when it's in the present tense.",
+     "kind": "word_choice",
+     "original": "She can sings very well"
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "I go to the work by bus every day.",
+   "corrections": [
+    {
+     "corrected": "go to work by",
+     "explanation": "Use 'work' instead of 'the work'.",
+     "kind": "word_choice",
+     "original": "go to the work by"
+    }
+   ],
+   "dropped": [
+    "\"I go to work by bus every day.\": not what the learner said"
+   ]
+  },
+  {
+   "said": "We was very happy with the hotel.",
+   "corrections": [
+    {
+     "corrected": "We were",
+     "explanation": "Use 'were' with 'we' in the past.",
+     "kind": "grammar",
+     "original": "We was"
+    }
+   ],
+   "dropped": [
+    "\"very happy\": the correction changes only case or punctuation",
+    "\"with the hotel\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "He doesn't know nothing about cars.",
+   "corrections": [],
+   "dropped": [
+    "\"He doesn't know nothing about cars.\": the correction changes only case or punctuation",
+    "\"He doesn't know nothing about cars.\": the correction changes only case or punctuation",
+    "\"He doesn't know nothing about cars.\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I'm interesting in history and old buildings.",
+   "corrections": [
+    {
+     "corrected": "interesting",
+     "explanation": "It should be 'interested' because you are feeling interest.",
+     "kind": "word_choice",
+     "original": "I'm interesting"
+    },
+    {
+     "corrected": "I'm interested in history",
+     "explanation": "We use 'I'm' for 'I am' when talking about feelings.",
+     "kind": "grammar",
+     "original": "I'm interesting in history"
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "Last summer we have visited Italy.",
+   "corrections": [
+    {
+     "corrected": "Last summer we visited Italy.",
+     "explanation": "We use 'visited' instead of 'have visited' for a past event.",
+     "kind": "word_choice",
+     "original": "Last summer we have visited Italy."
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "My brother works like a teacher in a small school.",
+   "corrections": [
+    {
+     "corrected": "teacher is",
+     "explanation": "The correct form is 'teacher'",
+     "kind": "word_choice",
+     "original": "teacher in"
+    }
+   ],
+   "dropped": [
+    "\"works like\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I need to do a decision about my job.",
+   "corrections": [
+    {
+     "corrected": "I need to make a decision",
+     "explanation": "Use 'make' instead of 'do' for decisions.",
+     "kind": "word_choice",
+     "original": "I need to do a decision"
+    },
+    {
+     "corrected": "need to make a decision",
+     "explanation": "Your sentence is almost perfect!",
+     "kind": "grammar",
+     "original": "need to do a decision"
+    }
+   ],
+   "dropped": [
+    "\"about my job\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "The childrens are playing football outside.",
+   "corrections": [
+    {
+     "corrected": "The children are playing football outside.",
+     "explanation": "We use 'children' without 's' when we talk about children in general.",
+     "kind": "word_choice",
+     "original": "The childrens are playing football outside."
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "I'm waiting you for twenty minutes.",
+   "corrections": [
+    {
+     "corrected": "I'm waiting for you",
+     "explanation": "We use 'for' when we are waiting for someone.",
+     "kind": "word_choice",
+     "original": "I'm waiting you for twenty minutes."
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "She is the most intelligent person which I know.",
+   "corrections": [
+    {
+     "corrected": "intelligent",
+     "explanation": "Use 'the most intelligent' instead of 'most intelligent'.",
+     "kind": "word_choice",
+     "original": "most intelligent"
+    }
+   ],
+   "dropped": [
+    "\"which\": the correction changes only case or punctuation",
+    "\"I know\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I didn't saw the message until this morning.",
+   "corrections": [
+    {
+     "corrected": "I didn't see the message",
+     "explanation": "The verb 'see' is used here, not 'saw'.",
+     "kind": "word_choice",
+     "original": "I didn't saw the message"
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "He said me that he was tired.",
+   "corrections": [
+    {
+     "corrected": "me that I was tired",
+     "explanation": "Combine the corrections.",
+     "kind": "grammar",
+     "original": "me that he was tired"
+    }
+   ],
+   "dropped": [
+    "\"He said me\": the correction changes only case or punctuation",
+    "\"he was tired\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I have a lot of homeworks tonight.",
+   "corrections": [],
+   "dropped": [
+    "\"homeworks\": the correction changes only case or punctuation",
+    "\"\": not what the learner said"
+   ]
+  },
+  {
+   "said": "It depends of the weather.",
+   "corrections": [
+    {
+     "corrected": "It depends on the weather.",
+     "explanation": "We use 'on' instead of 'of' when talking about weather.",
+     "kind": "word_choice",
+     "original": "It depends of the weather."
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "We arrived to the airport very early.",
+   "corrections": [
+    {
+     "corrected": "We arrived at the airport",
+     "explanation": "We use 'at' with airports.",
+     "kind": "word_choice",
+     "original": "We arrived to the airport"
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "I goed to the shop and buyed some bread.",
+   "corrections": [
+    {
+     "corrected": "I went to the",
+     "explanation": "Use 'went' for 'goed' and 'bought' for 'buyed'.",
+     "kind": "word_choice",
+     "original": "I goed to the"
+    },
+    {
+     "corrected": "shop and bought some bread.",
+     "explanation": "",
+     "kind": "word_choice",
+     "original": "shop and buyed some bread."
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "She don't have no time for sports.",
+   "corrections": [
+    {
+     "corrected": "She doesn't have any time for",
+     "explanation": "Use 'doesn't' for negative sentences with 'have' and say 'any' instead of 'no'.",
+     "kind": "word_choice",
+     "original": "She don't have no time for"
+    }
+   ],
+   "dropped": []
+  },
+  {
+   "said": "When I was child, I was living in a village.",
+   "corrections": [
+    {
+     "corrected": "I was a child, I",
+     "explanation": "We use 'a' before 'child' when it's in the past.",
+     "kind": "word_choice",
+     "original": "I was child, I"
+    }
+   ],
+   "dropped": [
+    "\"When I was a child, I was living\": not what the learner said",
+    "\"When I was a child, I was living in a village\": not what the learner said"
+   ]
+  },
+  {
+   "said": "My parents let me to stay out late.",
+   "corrections": [],
+   "dropped": [
+    "\"My parents let me to stay out late.\": the correction changes only case or punctuation",
+    "\"My parents let me to stay out late.\": the correction changes only case or punctuation",
+    "\"My parents let me to stay out late.\": the correction changes only case or punctuation"
+   ]
+  },
+  {
+   "said": "I'm going to travel in London next month.",
+   "corrections": [],
+   "dropped": [
+    "\"\": not what the learner said"
+   ]
+  },
+  {
+   "said": "There are many people in the park today.",
+   "correct": true,
+   "corrections": [
+    {
+     "corrected": "There is",
+     "explanation": "We use 'is' with 'there is' when we're talking about one thing.",
+     "kind": "grammar",
+     "original": "There are"
+    }
+   ]
+  },
+  {
+   "said": "Honestly, I'm not a big fan of horror films.",
+   "correct": true,
+   "corrections": [
+    {
+     "corrected": "I'm not",
+     "explanation": "Remove 'Honestly' as it's not necessary here.",
+     "kind": "word_choice",
+     "original": "Honestly, I'm not"
+    }
+   ]
+  },
+  {
+   "said": "I gotta go now, see you later.",
+   "correct": true,
+   "corrections": [
+    {
+     "corrected": "I got",
+     "explanation": "Use 'got' instead of 'gotta'.",
+     "kind": "word_choice",
+     "original": "I gotta"
+    }
+   ]
+  }
+ ]
+}
